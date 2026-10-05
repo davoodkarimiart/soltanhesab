@@ -76,3 +76,13 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Increased customer names, numeric values and totals font sizes while preserving the seven-column mobile fit.
 - Reduced row/totals/balance heights for a denser, cleaner mobile card.
 - Desktop aggregate card remains width-constrained with no horizontal overflow.
+
+
+## v0.4.8 customer/reporting correction
+- Customers rebuilt as searchable directory with Company/Panel filters and per-customer profile editing.
+- Customer profile now supports original/display name editing, rate type, active state, account unlink/link and scoped aggregation suggestions.
+- Added separate configurable theme colors for Site Win and Site Loss; defaults inherit Pay and Receive colors.
+- Reports Company/Panel filters are now hard-linked in UI and validated server-side.
+- Report navigation and bottom navigation hardened.
+- Old source-file rows now show a consistent Download control state instead of filename/status text.
+- Final/customer accounting color hierarchy and customer aggregate responsiveness tightened.
