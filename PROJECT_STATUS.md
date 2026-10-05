@@ -5,7 +5,7 @@
 | 0 | Freeze/Audit V32 contract | IN_PROGRESS | pending | Exhaustive V32 inventory and 13-phase scope map created. Sanitized golden fixtures/expected outputs remain. |
 | 1 | Foundation / Installer / Security / Base Logging | ACCEPTED | accepted | v0.1.1 passed real cPanel install/login/health test and was accepted by user. Final login visual remains intentionally mapped to Phase 8. |
 | 2 | Company / Panel / AccountSettings | ACCEPTED | accepted | v0.2.3 fixed AccountSettings name import and user confirmed Phase 2 data flow works. Remaining UX regression: Account search did not restore/list-filter dynamically after clearing. v0.2.5 cumulative patch prepared with live search plus cleanup controls for wrong Accounts/import history; waiting for retest. |
-| 3 | Daily Report_WL / Accounting Engine / Preview | READY_FOR_USER_TEST | pending | Release v0.3.0 built: Report_WL import, server-authoritative formulas, editable preview, wrong-company/duplicate/unknown-account handling, final DB save, reopen/edit with revisions. Waiting for cPanel test. |
+| 3 | Daily Report_WL / Accounting Engine / Preview | READY_FOR_USER_TEST | pending | v0.3.0 passed basic live save but exposed Phase 3 guardrail/UI defects. v0.3.1 prepared: explicit unknown-user resolution, single-panel report ownership, same-panel/day username overlap blocking, audited soft-delete, commission-column parity, rounded Toman display, responsive fixed-layout accounting table. Waiting for retest. |
 | 4 | Customer / Grouping / Ledger / Sharing | PLANNED | pending | |
 | 5 | Archive / Reports / Search | PLANNED | pending | |
 | 6 | Excel / PDF / Print / Summary Image | PLANNED | pending | |
