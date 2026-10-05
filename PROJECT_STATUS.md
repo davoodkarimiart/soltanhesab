@@ -69,3 +69,10 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Final-report customer card responsive layout rebuilt for both desktop and mobile; duplicate generated image preview hidden while share/download image generation remains available.
 - Semantic header colors and stronger accounting-grid borders applied.
 - Bottom navigation forced visible above Reports on mobile.
+
+
+## v0.4.7 customer-card density correction
+- Reduced dead horizontal/vertical padding in the final-report customer aggregate card.
+- Increased customer names, numeric values and totals font sizes while preserving the seven-column mobile fit.
+- Reduced row/totals/balance heights for a denser, cleaner mobile card.
+- Desktop aggregate card remains width-constrained with no horizontal overflow.
