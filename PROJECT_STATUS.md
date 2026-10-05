@@ -35,3 +35,11 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Cell separators should be darker/stronger like the approved HTML reference.
 - Mobile button placement and action grouping still need app-like polish.
 - These items are explicitly deferred to Phase 8 Full UX Parity / responsive polish and must not be dropped.
+
+
+## v0.4.3 font loading correction
+- Removed Settings font file upload controls.
+- Removed broken dual IRANSans filename fallback that caused 404 requests for both hyphenated and spaced names.
+- Vazirmatn now has a browser webfont fallback and prefers existing local hosted files when present.
+- IRANSans is only requested when the canonical local file exists; otherwise it falls back cleanly to Vazirmatn.
+- Asset cache keys bumped to v043.
