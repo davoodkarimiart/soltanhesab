@@ -176,13 +176,23 @@ Financial snapshots are historical.
 
 Pure presentation settings such as font/theme/digit style may be rendered using current settings unless a later product decision adds historical presentation snapshots.
 
-## 12. Customer grouping
+## 12. Customer grouping and final-output behavior
 
-Grouping is explicit.
+Default grouping is automatic for final-accounting output.
 
-Trailing-number name cleanup can suggest likely groups but never silently merges Accounts.
+The authoritative behavior is the approved HTML reference:
+- each final report row derives a customer grouping key from the customer/account name
+- a trailing numeric suffix is ignored for grouping, including Persian/Arabic/Latin digits and spacing variants
+- rows that resolve to the same base customer key are automatically treated as one customer for the final-report customer card
+- clicking any customer name in the final output must immediately open the aggregated card for every matching row in that same report
+- this final-output grouping must NOT depend on a pre-existing customers/customer_accounts database link and must NOT require the user to manually approve groups first
+- manual customer management remains available for cross-report/customer-master purposes
+- the user may explicitly split/exclude an Account from an otherwise automatic group; that exception must be remembered and must override future automatic grouping
 
-Customer ledger:
+The customer card shown from final output is report-contextual: it aggregates matching rows from the current report, not an arbitrary all-time ledger.
+
+Customer ledger outside the final report may aggregate history across dates/panels/companies according to filters.
+
 customer_net = sum(received - paid)
 
 ## 13. Reporting
@@ -208,13 +218,27 @@ All multi-row reports show totals and explicit site status.
 ## 14. Money scale
 
 Options:
-- full
-- trim_3
-- trim_4
+- full => scale factor 1
+- trim_3 => scale factor 1000
+- trim_4 => scale factor 10000
 
-This changes display/input convention only.
+This setting controls BOTH Toman input convention and Toman display convention. It does not alter dollar values.
 
-Canonical financial values are stored in complete units in the database.
+Rate input is converted to canonical full-Toman value before calculation:
+canonical_rate = entered_rate * scale_factor
+
+Examples:
+- full + entered rate 200 => canonical rate 200 Toman
+- trim_3 + entered rate 200 => canonical rate 200,000 Toman
+- trim_4 + entered rate 20 => canonical rate 200,000 Toman
+
+When the user changes the scale selector, the UI should convert visible rate inputs so the same real canonical rate is preserved unless the user deliberately edits the rate afterward.
+
+All accounting calculations use canonical rate values. Displayed Toman results are converted back according to the selected scale.
+
+Dollar/member-win values never use this scale and keep their natural precision.
+
+Canonical financial values are stored in complete Toman units in the database.
 
 ## 15. Digits
 
