@@ -50,3 +50,13 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Upgrade v0.4.4 runs pending migrations and verifies customer_autogroup_exclusions.
 - Generic report label "مانده" removed from operational reporting. Reports now show explicit برد سایت / باخت سایت / تسویه with semantic color; customer ledger uses دریافت از مشتری / پرداخت به مشتری / تسویه.
 - favicon added to remove the unrelated favicon 404 noise.
+
+
+## v0.4.5 report/mobile/customer-card correction
+- Final-report customer card rebuilt to match approved HTML composition on mobile and desktop: grouped table, semantic colors, 3 totals, full-width receive/pay balance, automatic image generation and native-share fallback.
+- Generic "تفصیلی" label replaced with "ریز حساب" while keeping internal report type compatibility.
+- Daily reporting view now catches/logs report-generation exceptions instead of collapsing into the global generic error page.
+- Print/PDF mobile layout hardened and Back now closes the spawned print tab or returns to Reports.
+- Bottom navigation forced above report content on mobile.
+- Report image semantic colors and site win/loss footer corrected; displayed precision reduced.
+- New Report_WL uploads are retained under private storage and archive shows a small Download link instead of exposing the filename. Existing historic uploads cannot be reconstructed retroactively.
