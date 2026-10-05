@@ -550,3 +550,55 @@ The migration is not finished merely because the backend exists.
 It is finished when every item in FEATURE_PARITY_MATRIX.md is either:
 - implemented and tested, or
 - explicitly marked as intentionally changed/removed with a documented product decision.
+
+
+---
+
+## Cross-cutting requirements that must not be lost between phases
+
+### Logging architecture
+The site has three distinct logging concerns:
+1. Audit Log: durable history of business/security changes, including report finalize/edit, import/sync, customer regrouping, settings, backup/restore and MCP/token actions.
+2. System/Operational Log: normal application events, migrations, import results, scheduled jobs, backup runs, Telegram delivery, health events and operational warnings.
+3. Debug/Error Log: exceptions and diagnostic context for Developer. Production never shows stack traces to ordinary users and never logs passwords, tokens or unsafe raw payloads.
+
+Minimum structured logging infrastructure starts in Phase 1 so every later module can emit events. Full Developer log browsing/filtering is completed in Phase 10.
+
+### Backup and Telegram infrastructure
+Backup is mandatory:
+- manual DB backup;
+- scheduled DB backup using cPanel-compatible cron;
+- local host storage;
+- retention/rotation policy;
+- Telegram Bot Token + Chat/Channel destination stored as secrets/config, not public source;
+- send backup file to Telegram;
+- if Telegram delivery fails, keep the backup locally, record failure, and expose retry/status;
+- Developer-only download/restore;
+- restore audit event and pre-restore safety backup where practical.
+
+The hooks/config/storage conventions start in Phase 1; complete backup/Telegram UI and scheduler management are Phase 10.
+
+### Continuous mobile-first acceptance
+Mobile quality is required in every phase that adds UI, not deferred to PWA.
+- correct viewport;
+- no unwanted iOS focus zoom;
+- effective input/select font size at least 16px where needed to prevent iOS auto-zoom;
+- touch-friendly targets;
+- no accidental page-level horizontal scroll;
+- modals/sheets fit narrow screens;
+- safe-area-aware fixed/bottom navigation;
+- onscreen keyboard must not hide critical actions;
+- iPhone SE class width is an explicit test target.
+
+### PWA as product requirement
+Architecture must remain compatible with manifest/installability, service worker update strategy, standalone mobile mode and safe offline shell. Financial writes always require live server confirmation.
+
+### Phase state tracking
+Every phase has exactly one state in PROJECT_STATUS.md:
+PLANNED / IN_PROGRESS / BLOCKED / READY_FOR_USER_TEST / ACCEPTED / REGRESSION_FOUND.
+
+A committed phase is not ACCEPTED until user testing/fixes are completed. Before moving to the next phase:
+- update PROJECT_STATUS.md;
+- check implemented items in FEATURE_PARITY_MATRIX.md;
+- document any intentional behavior deviation;
+- return to the next unfinished scope in this master plan.
