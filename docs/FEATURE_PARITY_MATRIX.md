@@ -367,3 +367,44 @@ Behavior:
 - [ ] Settings scope.
 - [ ] Backup/diagnostics scopes.
 - [ ] Same Application Services as UI.
+
+
+## Logging / diagnostics
+- [ ] Audit Log is separate from operational/debug logging.
+- [ ] System/Operational Log.
+- [ ] Debug/Error Log.
+- [ ] Production debug output hidden from ordinary users.
+- [ ] Secrets/tokens/passwords redacted from logs.
+- [ ] Log retention policy.
+- [ ] Developer log viewer.
+- [ ] Search/filter logs.
+- [ ] Cron/background task results logged.
+
+## Backup / Telegram infrastructure
+- [ ] Manual DB backup.
+- [ ] Scheduled DB backup.
+- [ ] cPanel-compatible cron instructions/configuration.
+- [ ] Backup history/metadata.
+- [ ] Local host backup storage.
+- [ ] Local retention/rotation policy.
+- [ ] Telegram Bot Token configuration.
+- [ ] Telegram Chat/Channel destination configuration.
+- [ ] Telegram connection test.
+- [ ] Send backup file to Telegram.
+- [ ] Telegram send result in System Log.
+- [ ] Failed Telegram send preserves local backup.
+- [ ] Failed Telegram send exposes retry/status.
+- [ ] Manual backup download.
+- [ ] Developer-only restore.
+- [ ] Restore audit event.
+- [ ] Pre-restore safety backup where practical.
+
+## Mobile browser hardening
+- [ ] Correct viewport meta/configuration.
+- [ ] iOS input focus does not cause unwanted page zoom.
+- [ ] Mobile inputs/selects use suitable effective font size to prevent auto-zoom.
+- [ ] Safe-area support for bottom/fixed UI.
+- [ ] Onscreen keyboard does not hide critical actions.
+- [ ] Touch targets are practical on phones.
+- [ ] No accidental horizontal document scroll.
+- [ ] Every phase that adds UI is tested on narrow mobile width.
