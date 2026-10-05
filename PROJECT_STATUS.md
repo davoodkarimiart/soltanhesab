@@ -60,3 +60,12 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Bottom navigation forced above report content on mobile.
 - Report image semantic colors and site win/loss footer corrected; displayed precision reduced.
 - New Report_WL uploads are retained under private storage and archive shows a small Download link instead of exposing the filename. Existing historic uploads cannot be reconstructed retroactively.
+
+
+## v0.4.6 stability correction
+- Fixed daily Reports SQL crash when `daily_reports.source_storage_path` is missing; report query now degrades safely and upgrade repairs the column.
+- Fixed Customers page 500 when `customer_autogroup_exclusions` is missing; customer suggestions are now migration-safe and upgrade repairs the table.
+- Company/Panel filters in Reports are now linked: selected Company constrains Panel options.
+- Final-report customer card responsive layout rebuilt for both desktop and mobile; duplicate generated image preview hidden while share/download image generation remains available.
+- Semantic header colors and stronger accounting-grid borders applied.
+- Bottom navigation forced visible above Reports on mobile.
