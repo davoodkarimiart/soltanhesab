@@ -3,7 +3,7 @@
 | Phase | Name | State | User acceptance | Notes |
 |---|---|---|---|---|
 | 0 | Freeze/Audit V32 contract | IN_PROGRESS | pending | Exhaustive V32 inventory and 13-phase scope map created. Sanitized golden fixtures/expected outputs remain. |
-| 1 | Foundation / Installer / Security / Base Logging | IN_PROGRESS | pending | Release v0.1.0 package built for hosting test; waiting for user install/verification before acceptance. |
+| 1 | Foundation / Installer / Security / Base Logging | IN_PROGRESS | pending | v0.1.0 passed host health test; installer UI and dual Admin/Developer creation feedback found. v0.1.1 patch prepared for retest before acceptance. |
 | 2 | Company / Panel / AccountSettings | PLANNED | pending | |
 | 3 | Daily Report_WL / Accounting Engine / Preview | PLANNED | pending | |
 | 4 | Customer / Grouping / Ledger / Sharing | PLANNED | pending | |
