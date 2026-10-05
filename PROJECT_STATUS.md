@@ -5,7 +5,7 @@
 | 0 | Freeze/Audit V32 contract | IN_PROGRESS | pending | Exhaustive V32 inventory and 13-phase scope map created. Sanitized golden fixtures/expected outputs remain. |
 | 1 | Foundation / Installer / Security / Base Logging | ACCEPTED | accepted | v0.1.1 passed real cPanel install/login/health test and was accepted by user. Final login visual remains intentionally mapped to Phase 8. |
 | 2 | Company / Panel / AccountSettings | ACCEPTED | accepted | v0.2.3 fixed AccountSettings name import and user confirmed Phase 2 data flow works. Remaining UX regression: Account search did not restore/list-filter dynamically after clearing. v0.2.5 cumulative patch prepared with live search plus cleanup controls for wrong Accounts/import history; waiting for retest. |
-| 3 | Daily Report_WL / Accounting Engine / Preview | READY_FOR_USER_TEST | pending | v0.3.0 passed basic live save but exposed Phase 3 guardrail/UI defects. v0.3.1 prepared: explicit unknown-user resolution, single-panel report ownership, same-panel/day username overlap blocking, audited soft-delete, commission-column parity, rounded Toman display, responsive fixed-layout accounting table. Waiting for retest. |
+| 3 | Daily Report_WL / Accounting Engine / Preview | ACCEPTED | accepted | v0.3.1 passed functional retest. Accounting calculations, unknown-user resolution, panel/day overlap rules, delete flow and final save were accepted. Remaining visual density/readability/button-layout issues are recorded as UX debt for Phase 8 Full UX Parity. |
 | 4 | Customer / Grouping / Ledger / Sharing | PLANNED | pending | |
 | 5 | Archive / Reports / Search | PLANNED | pending | |
 | 6 | Excel / PDF / Print / Summary Image | PLANNED | pending | |
@@ -28,3 +28,10 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Dense vertical stacking of sync controls and import history is acknowledged as mobile/web UX debt.
 - This must be corrected in Phase 8 Full UX Parity / responsive polish, not forgotten.
 - Phase 3 can proceed now because the data model/import flow is accepted.
+
+
+## Phase 3 accepted visual UX debt
+- Accounting/report table is functionally accepted but current typography is too small for the available cell area.
+- Cell separators should be darker/stronger like the approved HTML reference.
+- Mobile button placement and action grouping still need app-like polish.
+- These items are explicitly deferred to Phase 8 Full UX Parity / responsive polish and must not be dropped.
