@@ -206,3 +206,20 @@ Scopes نمونه:
 - Defaults should remain readable and mobile-first.
 - Typography settings must affect UI preview and printable/PDF outputs consistently.
 - Do not commit or redistribute proprietary font binaries in the public repository unless licensing/publication is explicitly verified. Keep font asset integration deploy-time configurable.
+
+
+## 19. Logging / Diagnostics
+Three distinct concerns are required:
+- Audit Log for durable business/security change history.
+- System/Operational Log for ordinary system events, imports, migrations, cron jobs, backup and Telegram delivery.
+- Debug/Error Log for Developer diagnostics and exceptions.
+Logging infrastructure begins in Phase 1; the full Developer viewer is completed later. Production must redact secrets and must not expose stack traces to ordinary users.
+
+## 20. Backup + Telegram
+Backups are mandatory. Support manual and scheduled DB backup, local host storage, retention/rotation, Telegram delivery, delivery status and retry. If Telegram fails, keep the backup locally and log the failure. Restore is Developer-only, audited, and should create a safety backup first where practical. Scheduling must be compatible with cPanel cron.
+
+## 21. Continuous Mobile-First
+Mobile quality is a gate in every UI phase. Prevent iOS focus zoom, use suitable input/select font sizing, avoid page horizontal scroll, support safe areas, make touch targets usable, keep primary actions reachable above the mobile keyboard, and test iPhone SE class width continuously.
+
+## 22. Phase State Tracking
+Use PROJECT_STATUS.md with states PLANNED, IN_PROGRESS, BLOCKED, READY_FOR_USER_TEST, ACCEPTED, REGRESSION_FOUND. A phase is not accepted until user testing/fixes are complete. Update status and parity matrix before starting the next phase.
