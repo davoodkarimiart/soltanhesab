@@ -43,3 +43,10 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Vazirmatn now has a browser webfont fallback and prefers existing local hosted files when present.
 - IRANSans is only requested when the canonical local file exists; otherwise it falls back cleanly to Vazirmatn.
 - Asset cache keys bumped to v043.
+
+
+## v0.4.4 saved-report and terminology correction
+- Saved report route hardened against missing Phase 4 auto-group exclusion migration to prevent report-view 500s.
+- Upgrade v0.4.4 runs pending migrations and verifies customer_autogroup_exclusions.
+- Generic report label "مانده" removed from operational reporting. Reports now show explicit برد سایت / باخت سایت / تسویه with semantic color; customer ledger uses دریافت از مشتری / پرداخت به مشتری / تسویه.
+- favicon added to remove the unrelated favicon 404 noise.
