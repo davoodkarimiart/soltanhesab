@@ -190,3 +190,19 @@ Scopes نمونه:
 - Preserve source data + manual overrides.
 - Every schema migration must be reversible or have a clear backup plan.
 - Never commit real DB credentials, passwords, tokens, customer production exports, or private backups.
+
+
+## 18. Typography / Font Settings
+- Font choice must be configurable from Admin settings.
+- Supported product fonts currently planned:
+  - Vazirmatn
+  - IRANSans
+- Font selection should not be limited to one global switch. Admin should be able to choose at least:
+  - global/site UI font
+  - headings/titles font
+  - forms, inputs, selects and buttons font
+  - accounting tables and report tables font
+  - printable/exported report font
+- Defaults should remain readable and mobile-first.
+- Typography settings must affect UI preview and printable/PDF outputs consistently.
+- Do not commit or redistribute proprietary font binaries in the public repository unless licensing/publication is explicitly verified. Keep font asset integration deploy-time configurable.
