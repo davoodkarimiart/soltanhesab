@@ -138,3 +138,14 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - No DB migration.
 - Release ZIP: `soltanhesab-release-v0.4.14.zip`.
 - Runtime source sync is being reconciled against the live-export base; secrets, logs, backups, customer uploads and licensed font binaries remain excluded from Git.
+
+
+## v0.4.13 summary/export/font correction
+- Finalized-report Summary now opens as an in-app modal instead of a new browser tab.
+- Summary modal includes automatic PNG generation, Save Image, native Share, WhatsApp, Telegram, and in-place Print/PDF.
+- Receive/Pay colors now fill both customer-name and amount cells in the Summary UI and image.
+- Excel export now derives Receive/Pay/Commission/Site Win/Site Loss fills from Settings theme colors and opacity instead of fixed hard-coded pastels; borders/RTL remain.
+- Generic daily Excel export no longer includes the source-file column.
+- Print/PDF explicitly applies the selected `font_print` family to the entire printable document and supports both `Iranian-Sans.ttf` and `Iranian Sans.ttf` when a licensed asset exists on the host.
+- No database migration.
+- Intended as the final Package 4 correction before acceptance and Phase 8.
