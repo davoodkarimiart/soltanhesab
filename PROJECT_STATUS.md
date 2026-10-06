@@ -214,3 +214,13 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - No login business/security logic changed; successful Golpooch selection still reveals the real server-side login form.
 - PWA cache bumped to v053.
 - No database migration.
+
+
+## v0.5.4 settings/customer UX correction
+- Fixed Settings save failure caused by grouped numeric values such as 200,000 / Persian digits being rejected by server-side numeric validation.
+- Numeric settings now normalize Persian/Arabic digits, thousands separators and decimal separators before validation/storage.
+- Customer search is now live on input and no longer requires pressing Apply Filter for name matching.
+- Customer search/profile text fields are hardened against mobile password-manager/autofill prompts.
+- Keyboard Enter/Next flow expanded to Settings/customer profile/search fields.
+- PWA cache bumped to v054.
+- No database migration.
