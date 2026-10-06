@@ -156,3 +156,11 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Summary Print/PDF no longer prints a fixed-position dialog repeatedly across multiple pages.
 - During print the Summary dialog is temporarily moved to the document root, printed as a single static flow, then restored to its original place.
 - No database migration.
+
+
+## v0.4.15 summary one-page print correction
+- Summary Report column headers (نام مشتری / مبلغ) now use exactly the same Receive/Pay color as the rest of each panel.
+- Summary image generation uses the same panel color for title, headers and populated rows.
+- Summary PDF/Print is now produced from the rendered summary image in an isolated print iframe and forced to one A4 landscape page, scaling down as needed.
+- The live Summary dialog is no longer moved in the DOM during print, removing the temporary duplicate/ghost dialog and the two-click close problem after printing.
+- No database migration.
