@@ -96,3 +96,14 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Daily/monthly site result is recomputed from total_received-total_paid for rendering.
 - Report Download always works: original source when retained, reconstructed XLS from immutable saved rows for older reports.
 - Final-report customer aggregate dialog has hard no-horizontal-overflow rules on desktop and mobile.
+
+
+## v0.4.10 final Package 4 stabilization
+- Daily report site win/loss TypeError fixed by normalizing PDO DECIMAL values before rendering.
+- Daily report Panel filtering now uses report rows as authoritative ownership; stale Company/Panel combinations are reset instead of accepted.
+- Saved report totals/site status are repaired from immutable rows during upgrade.
+- Customers directory is completed from AccountSettings via deterministic auto-grouping; unnamed accounts fall back to Username instead of `- -`.
+- Manual split remains an explicit exception; manual link can move an Account between customer groups safely.
+- Customer aggregate dialog is made genuinely responsive rather than hiding overflow.
+- Historical report download is reconstructed directly from saved rows when original upload is unavailable.
+- v0.4.10 is READY_FOR_USER_TEST and is intended to close Package 4 before Phase 8.
