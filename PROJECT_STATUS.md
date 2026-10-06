@@ -127,3 +127,14 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - No DB migration is required.
 - A canonical runtime-source branch was created: `source/v0.4.12-runtime`.
 - The runtime-source branch was seeded from the live export; secrets, runtime storage, logs, database config and font binaries are intentionally excluded.
+
+
+## v0.4.14 final Package 4 polish
+- User accepted v0.4.12 reporting/mobile fixes and requested the remaining Summary/Excel/Print fixes.
+- Summary is now an in-app modal with image/share/WhatsApp/Telegram/print actions.
+- Summary receive/pay customer name + amount cells follow configured theme colors.
+- Excel semantic colors and borders are applied from Settings.
+- Print/PDF honors `font_print` and waits for hosted web fonts before printing.
+- No DB migration.
+- Release ZIP: `soltanhesab-release-v0.4.14.zip`.
+- Runtime source sync is being reconciled against the live-export base; secrets, logs, backups, customer uploads and licensed font binaries remain excluded from Git.
