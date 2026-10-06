@@ -10,7 +10,7 @@
 | 5 | Archive / Reports / Search | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: Jalali date picker/display, Jalali monthly grouping, direct daily Open/Edit actions in archive, searchable customer filter, recent-entry list reduced to 3. Waiting for retest. |
 | 6 | Excel / PDF / Print / Summary Image | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: bordered RTL Excel export, stronger mobile/A4 print layout, full report-table image instead of totals-only placeholder, current-report customer image/share flow. Waiting for retest. |
 | 7 | Settings / Theme / Numbers / Fonts | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: money-scale semantics aligned to thousand-Toman accounting base; font diagnostics and licensed-font upload flow added so desktop/mobile/PDF use the same hosted assets. Waiting for retest. |
-| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.3 login parity correction prepared from the user-supplied approved V28 HTML: exact desktop and portrait login artwork, exact final crop rules and exact fist hitboxes restored while keeping real PHP authentication. Waiting for final mobile/desktop login retest. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
+| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.5 final UX correction prepared: meaningful 7/30/90-day dashboard comparison with aggregate total area + per-company site-result lines + axis labels/tooltips; customer directory defaults A→Y and true live search; Reports customer filter is detail-only and customer selection overrides company/panel to return that customer's payment detail across all companies. Waiting for final cPanel/mobile confirmation. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
 | 9 | PWA | READY_FOR_USER_TEST | pending | v0.5.0 adds manifest, supplied-brand icons/maskable icons, Apple touch icon, install prompt, network-first service worker and offline shell. Waiting for install/update test. |nding | Base logging/config/scheduler hooks begin in Phase 1. |
 | 11 | MCP | PLANNED | pending | |
 | 12 | Hardening / Release | PLANNED | pending | |
@@ -223,4 +223,16 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Customer search/profile text fields are hardened against mobile password-manager/autofill prompts.
 - Keyboard Enter/Next flow expanded to Settings/customer profile/search fields.
 - PWA cache bumped to v054.
+- No database migration.
+
+
+## v0.5.5 dashboard/customer/report semantics
+- Dashboard chart now has explicit horizontal date and vertical site-result axes, useful point/tap tooltips, one highlighted aggregate line/area for all companies, plus individual company lines.
+- Positive net is labeled Site Win; negative net is labeled Site Loss.
+- Customer directory default sort is Persian alphabetical A→Y.
+- Customer name search is client-side live and the full currently-filtered company/panel customer set is rendered, so clearing search restores results immediately.
+- PWA/app asset versions were bumped to v055 so mobile does not keep the stale pre-live-search JavaScript.
+- Reports customer selector is shown only in Detail / customer payment-detail mode.
+- In Detail mode, selecting a customer clears/overrides company and panel filters and returns that customer's rows across every company/panel.
+- Customer combo resolution accepts an exact customer name as well as the datalist label; a unique partial match can also resolve to the customer id.
 - No database migration.
