@@ -236,3 +236,14 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - In Detail mode, selecting a customer clears/overrides company and panel filters and returns that customer's rows across every company/panel.
 - Customer combo resolution accepts an exact customer name as well as the datalist label; a unique partial match can also resolve to the customer id.
 - No database migration.
+
+
+## v0.5.6 dashboard/report correction
+- Restored the original `ریز پرداخت` report mode as an independent report using Company/Panel/date filters.
+- Added a separate `ریز پرداخت مشتری` mode with customer selection; selecting a customer intentionally ignores Company/Panel and returns that customer's rows across all companies/panels.
+- Dashboard chart now plots cumulative Site Result so movement toward Site Win / Site Loss is visually meaningful instead of connecting unrelated daily net points.
+- Added explicit overall trend status plus per-company final Site Win/Site Loss values in the legend.
+- Dashboard point/tap tooltip is clamped inside the chart card so it remains visible on mobile and desktop.
+- Customer directory keeps Persian A→Y as default and live-search binding was hardened across input/keyup/search/change.
+- PWA cache bumped to v056.
+- No database migration.
