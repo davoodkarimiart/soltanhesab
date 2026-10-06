@@ -116,3 +116,14 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Removed source-file field from PDF/report-image outputs; source Download remains web-UI only.
 - PDF/image/summary output semantic fills now derive from Settings theme colors and theme opacity.
 - Intended as the final correction before Package 4 acceptance / Phase 8.
+
+
+## v0.4.12 reporting/mobile cleanup
+- Rebuilt from the latest live cPanel export supplied by the user after v0.4.11.
+- Daily report UI: removed the source-file column; Operations is now a single compact View eye action.
+- Daily/monthly/multi report header colors are semantic only: Receive/Pay/Commission and Site Win/Loss. Neutral fields (Date, Company, Panel, Period, Count) stay neutral.
+- Mobile report table widths/typography were tightened to fit without the previous color/column confusion.
+- Browser-native confirm/alert flows in the touched destructive/report flows were replaced with in-app mobile bottom-sheet dialogs.
+- No DB migration is required.
+- A canonical runtime-source branch was created: `source/v0.4.12-runtime`.
+- The runtime-source branch was seeded from the live export; secrets, runtime storage, logs, database config and font binaries are intentionally excluded.
