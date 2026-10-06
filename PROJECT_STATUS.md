@@ -10,9 +10,8 @@
 | 5 | Archive / Reports / Search | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: Jalali date picker/display, Jalali monthly grouping, direct daily Open/Edit actions in archive, searchable customer filter, recent-entry list reduced to 3. Waiting for retest. |
 | 6 | Excel / PDF / Print / Summary Image | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: bordered RTL Excel export, stronger mobile/A4 print layout, full report-table image instead of totals-only placeholder, current-report customer image/share flow. Waiting for retest. |
 | 7 | Settings / Theme / Numbers / Fonts | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: money-scale semantics aligned to thousand-Toman accounting base; font diagnostics and licensed-font upload flow added so desktop/mobile/PDF use the same hosted assets. Waiting for retest. |
-| 8 | Dashboard / Shell / Full UX Parity | IN_PROGRESS | pending | Package 5 work started after v0.4.16. Full mobile-first UX parity, dashboard/shell cleanup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
-| 9 | PWA | PLANNED | pending | |
-| 10 | Developer Ops / Logs / Backup / Telegram | PLANNED | pending | Base logging/config/scheduler hooks begin in Phase 1. |
+| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.0 Package 5 built from v0.4.16: customer-facing dashboard/shell, compact mobile forms, dark readable accounting grids, vector navigation, Golpooch login parity and responsive hardening. Waiting for cPanel/mobile test. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
+| 9 | PWA | READY_FOR_USER_TEST | pending | v0.5.0 adds manifest, supplied-brand icons/maskable icons, Apple touch icon, install prompt, network-first service worker and offline shell. Waiting for install/update test. |nding | Base logging/config/scheduler hooks begin in Phase 1. |
 | 11 | MCP | PLANNED | pending | |
 | 12 | Hardening / Release | PLANNED | pending | |
 
@@ -170,3 +169,17 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Summary Receive/Pay panels now use the exact computed Settings themeFill colors (including opacity), matching the corresponding total cards instead of using raw theme hex values.
 - No database migration.
 - Phase 8 / Package 5 development has started in parallel while Package 4 awaits final live confirmation.
+
+
+## v0.5.0 Package 5 — Phase 8 + 9
+- Built directly on the accepted v0.4.16 Package 4 base.
+- Uses the user-supplied Soltan Hesab square mark and horizontal logo as retained brand sources.
+- Generated favicon, Apple touch icon, 192/512 PWA icons and maskable PWA icons from the square source.
+- Reordered bottom navigation: Home, Entry, Customers, Reports, Companies, using one consistent outline icon language.
+- Removed test/schema/product-development language from the customer dashboard.
+- Companies/Panels, Entry, Customers and Reports received a mobile-density pass to reduce vertical waste.
+- Entry/report/customer filter fields use compact responsive grids; Enter advances through data-entry fields where appropriate.
+- Accounting tables use stronger black grid lines, larger effective text and tighter cells.
+- Restored V32 Golpooch login scene over the real server-side authentication.
+- PWA manifest + service worker + offline shell added; writes remain network-only.
+- No database migration.
