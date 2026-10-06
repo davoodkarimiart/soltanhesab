@@ -107,3 +107,12 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Customer aggregate dialog is made genuinely responsive rather than hiding overflow.
 - Historical report download is reconstructed directly from saved rows when original upload is unavailable.
 - v0.4.10 is READY_FOR_USER_TEST and is intended to close Package 4 before Phase 8.
+
+
+## v0.4.11 Package 4 cleanup/output correction
+- AccountSettings cleanup now ignores Account references that exist only in soft-deleted reports; active reports still block destructive cleanup.
+- Historical deleted reports preserve immutable row/name/rate snapshots; deleting Accounts safely nulls report-row account_id via existing FK semantics.
+- Restored Summary Report action for finalized reports: two-column Received/Paid summary, totals and site win/loss, with PNG and Print/PDF output.
+- Removed source-file field from PDF/report-image outputs; source Download remains web-UI only.
+- PDF/image/summary output semantic fills now derive from Settings theme colors and theme opacity.
+- Intended as the final correction before Package 4 acceptance / Phase 8.
