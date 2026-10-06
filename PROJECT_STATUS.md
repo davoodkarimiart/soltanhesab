@@ -86,3 +86,13 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Report navigation and bottom navigation hardened.
 - Old source-file rows now show a consistent Download control state instead of filename/status text.
 - Final/customer accounting color hierarchy and customer aggregate responsiveness tightened.
+
+
+## v0.4.9 customer-directory and reporting hard fix
+- Customer directory is account-backed: every Account is represented, including manually separated accounts.
+- Manual split now creates a standalone customer instead of making the Account disappear from Customers.
+- Reports Company->Panel filtering is server-rendered and server-validated; Company change submits immediately to rebuild only valid Panels.
+- Older saved reports can infer panel_id from report rows so daily filters do not silently lose rows.
+- Daily/monthly site result is recomputed from total_received-total_paid for rendering.
+- Report Download always works: original source when retained, reconstructed XLS from immutable saved rows for older reports.
+- Final-report customer aggregate dialog has hard no-horizontal-overflow rules on desktop and mobile.
