@@ -10,7 +10,7 @@
 | 5 | Archive / Reports / Search | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: Jalali date picker/display, Jalali monthly grouping, direct daily Open/Edit actions in archive, searchable customer filter, recent-entry list reduced to 3. Waiting for retest. |
 | 6 | Excel / PDF / Print / Summary Image | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: bordered RTL Excel export, stronger mobile/A4 print layout, full report-table image instead of totals-only placeholder, current-report customer image/share flow. Waiting for retest. |
 | 7 | Settings / Theme / Numbers / Fonts | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: money-scale semantics aligned to thousand-Toman accounting base; font diagnostics and licensed-font upload flow added so desktop/mobile/PDF use the same hosted assets. Waiting for retest. |
-| 8 | Dashboard / Shell / Full UX Parity | PLANNED | pending | Mobile-first is continuous before this parity sweep. |
+| 8 | Dashboard / Shell / Full UX Parity | IN_PROGRESS | pending | Package 5 work started after v0.4.16. Full mobile-first UX parity, dashboard/shell cleanup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
 | 9 | PWA | PLANNED | pending | |
 | 10 | Developer Ops / Logs / Backup / Telegram | PLANNED | pending | Base logging/config/scheduler hooks begin in Phase 1. |
 | 11 | MCP | PLANNED | pending | |
@@ -164,3 +164,9 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Summary PDF/Print is now produced from the rendered summary image in an isolated print iframe and forced to one A4 landscape page, scaling down as needed.
 - The live Summary dialog is no longer moved in the DOM during print, removing the temporary duplicate/ghost dialog and the two-click close problem after printing.
 - No database migration.
+
+
+## v0.4.16 summary theme parity
+- Summary Receive/Pay panels now use the exact computed Settings themeFill colors (including opacity), matching the corresponding total cards instead of using raw theme hex values.
+- No database migration.
+- Phase 8 / Package 5 development has started in parallel while Package 4 awaits final live confirmation.
