@@ -10,7 +10,7 @@
 | 5 | Archive / Reports / Search | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: Jalali date picker/display, Jalali monthly grouping, direct daily Open/Edit actions in archive, searchable customer filter, recent-entry list reduced to 3. Waiting for retest. |
 | 6 | Excel / PDF / Print / Summary Image | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: bordered RTL Excel export, stronger mobile/A4 print layout, full report-table image instead of totals-only placeholder, current-report customer image/share flow. Waiting for retest. |
 | 7 | Settings / Theme / Numbers / Fonts | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: money-scale semantics aligned to thousand-Toman accounting base; font diagnostics and licensed-font upload flow added so desktop/mobile/PDF use the same hosted assets. Waiting for retest. |
-| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.0 Package 5 built from v0.4.16: customer-facing dashboard/shell, compact mobile forms, dark readable accounting grids, vector navigation, Golpooch login parity and responsive hardening. Waiting for cPanel/mobile test. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
+| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.1 polish pass prepared after mobile review: compact two-row Entry layout, grouped rate inputs, customer alphabetical sort, denser Company/Panel and Settings layouts, larger report-grid text, V32 full-screen Golpooch crop/hitboxes, and 7-report dashboard trend chart. Waiting for cPanel/mobile retest. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
 | 9 | PWA | READY_FOR_USER_TEST | pending | v0.5.0 adds manifest, supplied-brand icons/maskable icons, Apple touch icon, install prompt, network-first service worker and offline shell. Waiting for install/update test. |nding | Base logging/config/scheduler hooks begin in Phase 1. |
 | 11 | MCP | PLANNED | pending | |
 | 12 | Hardening / Release | PLANNED | pending | |
@@ -182,4 +182,16 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Accounting tables use stronger black grid lines, larger effective text and tighter cells.
 - Restored V32 Golpooch login scene over the real server-side authentication.
 - PWA manifest + service worker + offline shell added; writes remain network-only.
+- No database migration.
+
+
+## v0.5.1 Phase 8 polish
+- Entry parameters follow one consistent structure across desktop/mobile: company/date/loss percent and paired general/special rates.
+- Rate inputs in Entry and Settings use live thousands grouping.
+- Customer directory includes Persian alphabetical sorting and balanced typography.
+- Company/Panel cards and Settings cards are substantially denser.
+- Reporting data-grid text is enlarged while retaining full-width fit.
+- Golpooch login no longer shows instructional copy; the V32 full-screen crop and fist hit areas are restored.
+- Dashboard adds a seven-report site-result trend visualization.
+- PWA static cache bumped to v051.
 - No database migration.
