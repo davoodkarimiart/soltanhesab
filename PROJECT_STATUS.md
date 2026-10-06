@@ -149,3 +149,10 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Print/PDF explicitly applies the selected `font_print` family to the entire printable document and supports both `Iranian-Sans.ttf` and `Iranian Sans.ttf` when a licensed asset exists on the host.
 - No database migration.
 - Intended as the final Package 4 correction before acceptance and Phase 8.
+
+
+## v0.4.14 summary header/print correction
+- Summary Report customer-name/amount header cells now use the same semantic Receive/Pay colors as their panel instead of staying white.
+- Summary Print/PDF no longer prints a fixed-position dialog repeatedly across multiple pages.
+- During print the Summary dialog is temporarily moved to the document root, printed as a single static flow, then restored to its original place.
+- No database migration.
