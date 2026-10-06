@@ -10,7 +10,7 @@
 | 5 | Archive / Reports / Search | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: Jalali date picker/display, Jalali monthly grouping, direct daily Open/Edit actions in archive, searchable customer filter, recent-entry list reduced to 3. Waiting for retest. |
 | 6 | Excel / PDF / Print / Summary Image | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: bordered RTL Excel export, stronger mobile/A4 print layout, full report-table image instead of totals-only placeholder, current-report customer image/share flow. Waiting for retest. |
 | 7 | Settings / Theme / Numbers / Fonts | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: money-scale semantics aligned to thousand-Toman accounting base; font diagnostics and licensed-font upload flow added so desktop/mobile/PDF use the same hosted assets. Waiting for retest. |
-| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.1 polish pass prepared after mobile review: compact two-row Entry layout, grouped rate inputs, customer alphabetical sort, denser Company/Panel and Settings layouts, larger report-grid text, V32 full-screen Golpooch crop/hitboxes, and 7-report dashboard trend chart. Waiting for cPanel/mobile retest. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
+| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.2 final polish prepared: dashboard now uses 7/30/90-day company win/loss trend analytics with ratios/net KPIs; all image-share actions send file-only with no caption/text and fall back to image download only. Waiting for final cPanel/mobile confirmation. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
 | 9 | PWA | READY_FOR_USER_TEST | pending | v0.5.0 adds manifest, supplied-brand icons/maskable icons, Apple touch icon, install prompt, network-first service worker and offline shell. Waiting for install/update test. |nding | Base logging/config/scheduler hooks begin in Phase 1. |
 | 11 | MCP | PLANNED | pending | |
 | 12 | Hardening / Release | PLANNED | pending | |
@@ -194,4 +194,13 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Golpooch login no longer shows instructional copy; the V32 full-screen crop and fist hit areas are restored.
 - Dashboard adds a seven-report site-result trend visualization.
 - PWA static cache bumped to v051.
+- No database migration.
+
+
+## v0.5.2 dashboard/share correction
+- Replaced the "last 7 reports" chart with a useful 7/30/90-day analytical trend chart.
+- Chart aggregates site net by company across the selected range, includes overall win/loss ratio and net KPI, and plots up to the most active four companies.
+- Customer-card, summary-report and report-image native shares now send only the image file, with no title/caption/body text.
+- WhatsApp/Telegram fallback no longer pre-populates or copies text; unsupported browsers receive an image-download-only fallback.
+- PWA cache bumped to v052.
 - No database migration.
