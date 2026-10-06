@@ -10,7 +10,7 @@
 | 5 | Archive / Reports / Search | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: Jalali date picker/display, Jalali monthly grouping, direct daily Open/Edit actions in archive, searchable customer filter, recent-entry list reduced to 3. Waiting for retest. |
 | 6 | Excel / PDF / Print / Summary Image | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: bordered RTL Excel export, stronger mobile/A4 print layout, full report-table image instead of totals-only placeholder, current-report customer image/share flow. Waiting for retest. |
 | 7 | Settings / Theme / Numbers / Fonts | READY_FOR_USER_TEST | pending | v0.4.1 correction prepared: money-scale semantics aligned to thousand-Toman accounting base; font diagnostics and licensed-font upload flow added so desktop/mobile/PDF use the same hosted assets. Waiting for retest. |
-| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.2 final polish prepared: dashboard now uses 7/30/90-day company win/loss trend analytics with ratios/net KPIs; all image-share actions send file-only with no caption/text and fall back to image download only. Waiting for final cPanel/mobile confirmation. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
+| 8 | Dashboard / Shell / Full UX Parity | READY_FOR_USER_TEST | pending | v0.5.3 login parity correction prepared from the user-supplied approved V28 HTML: exact desktop and portrait login artwork, exact final crop rules and exact fist hitboxes restored while keeping real PHP authentication. Waiting for final mobile/desktop login retest. |nup, final accounting-table readability, modal/action redesign, login Golpooch parity and responsive hardening are now active work. |
 | 9 | PWA | READY_FOR_USER_TEST | pending | v0.5.0 adds manifest, supplied-brand icons/maskable icons, Apple touch icon, install prompt, network-first service worker and offline shell. Waiting for install/update test. |nding | Base logging/config/scheduler hooks begin in Phase 1. |
 | 11 | MCP | PLANNED | pending | |
 | 12 | Hardening / Release | PLANNED | pending | |
@@ -203,4 +203,14 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Customer-card, summary-report and report-image native shares now send only the image file, with no title/caption/body text.
 - WhatsApp/Telegram fallback no longer pre-populates or copies text; unsupported browsers receive an image-download-only fallback.
 - PWA cache bumped to v052.
+- No database migration.
+
+
+## v0.5.3 login parity correction
+- Rebased the Golpooch login visual behavior on the user-supplied approved V28 HTML rather than approximating it.
+- Extracted and retained the exact V28 desktop landscape artwork and dedicated portrait mobile artwork.
+- Desktop hit targets now match the final V23 rules: left 46%/40.5%/8.5%/12.5%, right 57%/40.5%/8.5%/12.5%.
+- Mobile crop/hit targets now match the final V25 rules: portrait artwork, translateY(-8%) scale(1.20), left 27%/40.5%/20%/15%, right 53%/40.5%/20%/15%.
+- No login business/security logic changed; successful Golpooch selection still reveals the real server-side login form.
+- PWA cache bumped to v053.
 - No database migration.
