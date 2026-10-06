@@ -1,168 +1,104 @@
 # سلطان حساب (Soltan Hesab)
 
-سلطان حساب یک سیستم حسابداری شخصی، چندشرکتی و موبایل‌محور است که برای مدیریت گزارش‌های روزانه، پنل‌ها، حساب‌های مشتریان، تسویه‌ها، گزارش‌گیری و خروجی‌های حسابداری طراحی شده است.
+وب‌اپ حسابداری سبک و cPanel-friendly برای مدیریت شرکت‌ها، پنل‌ها، AccountSettings، گزارش‌های Win/Loss، محاسبات حسابداری، مشتری‌های تجمیعی و خروجی‌های مدیریتی.
 
-> وضعیت فعلی: UI/Prototype منطق اصلی تقریباً تثبیت شده و پروژه وارد فاز تبدیل به Web App واقعی با Backend، Database، Installer، PWA و MCP شده است.
+**نسخه Runtime فعلی: `v0.4.13`**  
+**Stack:** PHP 8.1+ / MySQL or MariaDB / Vanilla JS / CSS / PWA-ready architecture
 
-## هدف پروژه
+## وضعیت پروژه
 
-ساخت یک سیستم یکپارچه که:
-- چند شرکت را مدیریت کند.
-- هر شرکت چند پنل داشته باشد.
-- هر پنل AccountSettings مستقل داشته باشد.
-- Accountها را از Report_WL روزانه تشخیص و محاسبه کند.
-- Customer را جدا از Account نگه دارد و چند Account را زیر یک مشتری تجمیع کند.
-- گزارش روزانه، ماهانه، چندماهه و ریزحساب بسازد.
-- خروجی Excel/PDF/تصویر قابل چاپ و اشتراک تولید کند.
-- روی هاست سبک cPanel قابل نصب باشد.
-- PWA داشته باشد.
-- از MCP برای کار با AI با همان Business Logic اصلی استفاده کند.
+فازهای Foundation، Company/Panel/AccountSettings و موتور اصلی حسابداری تأیید شده‌اند. Package 4 شامل Customer/Grouping، Reports، Export/Print و Settings تا v0.4.13 پیاده‌سازی شده و در آستانه Acceptance نهایی است. وضعیت دقیق هر فاز در [`PROJECT_STATUS.md`](PROJECT_STATUS.md) ثبت می‌شود.
 
-## معماری دامنه
+## قابلیت‌های Runtime فعلی
 
-```
-Company
-  └── Panel
-        └── Account
+- Installer مرورگری، Migration runner و Install lock
+- Login واقعی با Admin/Developer، Session، CSRF و Login throttling
+- Company → Panel → Account و Sync فایل AccountSettings (`.xls` / `.xlsx`)
+- نگهداری `original_name` و `display_name`، نرخ عمومی/ویژه و Active state
+- Import گزارش Report_WL و تشخیص Panel/Company از Usernameها
+- موتور حسابداری Server-side با Snapshot نرخ/درصد و ثبت Transactional
+- Preview قابل ویرایش، Duplicate/overlap guardrail و Unknown-user resolution
+- گزارش نهایی، حذف Soft-delete و Revision history
+- Customer auto-grouping، Manual split/link و دفتر حساب مشتری
+- گزارش‌های روزانه، ماهانه، چندماهه و ریز حساب با تاریخ شمسی
+- Excel RTL با Border و رنگ‌های Theme
+- Print/PDF با Theme و `font_print`
+- تصویر گزارش و کارت حساب مشتری با Share / WhatsApp / Telegram
+- خلاصه گزارش نهایی به‌صورت Modal با PNG/Share/Print
+- Settings برای نرخ، مقیاس مبلغ، ارقام، Theme و نقش‌های Font
+- Audit / System / Error logging infrastructure
 
-Customer
-  └── can group multiple Accounts
-```
+## معماری
 
-Customer با Panel یا Account یکی نیست. یک مشتری می‌تواند چند حساب داشته باشد و منطق تجمیع باید در سطح Customer انجام شود.
+UI و endpointهای وب از Serviceهای Application/Domain مشترک استفاده می‌کنند. منطق حسابداری نباید در UI، Export یا MCP دوباره پیاده‌سازی شود. MySQL/MariaDB منبع داده Canonical است و مبالغ مالی با DECIMAL نگهداری می‌شوند.
 
-## جریان اصلی حسابداری
+مسیرهای مهم:
 
-```
-AccountSettings Sync
-      ↓
-Daily Report_WL Import
-      ↓
-Company validation
-      ↓
-Account/Panel matching
-      ↓
-Accounting calculation
-      ↓
-Editable Preview
-      ↓
-Final Save
-      ↓
-Reports / Customer Ledger / Exports
+```text
+app/                    PHP application/services/support
+assets/                 CSS + browser JavaScript
+config/                 example configuration (live config is ignored)
+database/migrations/    versioned schema migrations
+install/                 browser installer
+upgrade/                 release upgrade helpers
+tests/                   regression/smoke tests
+index.php                main web application
+export.php               Excel XML export
+print.php                browser Print/PDF output
+summary_report.php       legacy/direct summary route (main UX is modal)
 ```
 
-## قواعد کلیدی
+برای جزئیات معماری و Scope به این فایل‌ها مراجعه شود:
 
-- ورودی حسابداری فعلاً فقط Daily Report_WL است.
-- شرکت قبل از پردازش Report باید انتخاب شود.
-- Report اشتباه متعلق به شرکت دیگر باید شناسایی و Block شود.
-- AccountSettings در سطح Panel است.
-- Sync بعدی AccountSettings باید حساب‌های جدید/حذف‌شده را مدیریت کند، نه Replace کور.
-- نام اصلی منبع همیشه حفظ می‌شود.
-- نام نمایشی قابل ویرایش است.
-- انتخاب استفاده از نام اصلی یا نمایشی در سطح Panel ذخیره می‌شود.
-- نرخ عمومی و ویژه پشتیبانی می‌شود.
-- برد سایت = جمع دریافتی - جمع پرداختی.
-  - مثبت: برد سایت
-  - منفی: باخت سایت
-  - صفر: تسویه
-- تنظیمات نمایش مبلغ تومان مستقل از منطق واقعی ذخیره می‌شود:
-  - کامل
-  - حذف ۳ صفر
-  - حذف ۴ صفر
-- تنظیم نمایش اعداد فارسی/انگلیسی است.
-- Theme حسابداری قابل تنظیم است:
-  - رنگ پس‌زمینه
-  - opacity
-  - رنگ متن
-  برای دریافتی، پرداختی، کمیسیون، برد سایت و باخت سایت.
+- [`AI_PROJECT_CONTEXT.md`](AI_PROJECT_CONTEXT.md): خلاصه فنی/محصولی برای AI یا توسعه‌دهنده جدید
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+- [`docs/BUSINESS_RULES.md`](docs/BUSINESS_RULES.md)
+- [`docs/DATABASE_PLAN.md`](docs/DATABASE_PLAN.md)
+- [`docs/MASTER_IMPLEMENTATION_PLAN.md`](docs/MASTER_IMPLEMENTATION_PLAN.md)
+- [`docs/V32_EXHAUSTIVE_FEATURE_INVENTORY.md`](docs/V32_EXHAUSTIVE_FEATURE_INVENTORY.md)
+- [`PROJECT_STATUS.md`](PROJECT_STATUS.md)
 
-## گزارش‌ها
+## نصب توسعه/هاست
 
-انواع گزارش:
-- روزانه
-- ماهانه
-- چندماهه
-- ریز حساب
+1. PHP 8.1+ و MySQL/MariaDB آماده باشد.
+2. `config/config.example.php` را مبنا قرار بده. Installer در نصب واقعی config امن را می‌سازد.
+3. `config/config.php`، لاگ‌ها، Backupها، Report sourceها و داده واقعی عمداً در Git نیستند.
+4. برای نصب تازه از `/install/` استفاده کن.
+5. برای Upgradeهای Release از فایل متناظر در `upgrade/` و دستورهای Release استفاده کن.
 
-تمام گزارش‌ها باید از داده Database ساخته شوند و خروجی Excel/PDF دقیقاً بر اساس Preview فعلی تولید شود.
+Root فعلی Production پروژه در cPanel:
 
-## Backend
-
-هدف: Backend سبک و متمرکز، مناسب هاست تقریبی 1 CPU / 1GB RAM.
-
-اصول:
-- یک Database مرکزی.
-- Business Logic مالی Server-side.
-- UI، Reports، Installer و MCP از Service Layer مشترک استفاده کنند.
-- محاسبات مالی به داده Client اعتماد نکنند.
-- ثبت نهایی Report تراکنشی باشد.
-- Duplicate detection Server-side باشد.
-- Audit Log برای عملیات حساس ثبت شود.
-
-## نقش‌ها
-
-### Admin
-- استفاده از سیستم
-- مدیریت شرکت/پنل/مشتری
-- AccountSettings Sync
-- گزارش‌ها و تنظیمات
-
-### Developer
-تمام دسترسی Admin به‌علاوه:
-- MCP
-- Token / Scope
-- System Log
-- Error Log
-- Audit Log
-- Backup
-- Health / diagnostics
-
-## Installer
-
-Installer نهایی باید:
-1. بررسی پیش‌نیازها
-2. دریافت Database credentials
-3. ساخت Schema/Migrations
-4. ساخت کاربر اولیه Admin/Developer
-5. ایجاد config امن
-6. قفل شدن بعد از نصب
-
-## PWA
-
-نسخه واقعی باید:
-- mobile-first باشد
-- installable باشد
-- manifest و service worker داشته باشد
-- UI فعلی را حفظ کند
-- روی iPhone/Android/Desktop مناسب باشد
-
-## MCP
-
-MCP نباید منطق یا دیتابیس مستقل داشته باشد.
-
-```
-MCP → Application Services → Domain Rules → Database
-UI  → Application Services → Domain Rules → Database
+```text
+~/public_html/soltan.toseno.ir
 ```
 
-Tokenها باید Scope، revoke و audit داشته باشند.
+## Font assets
 
-## وضعیت سورس UI
+کد از Vazirmatn WebFont پشتیبانی می‌کند و برای IRANSans مسیر Local asset را می‌شناسد. فایل‌های فونت دارای مجوز، Secret/config و داده مشتری عمداً در Repository عمومی Commit نمی‌شوند. Runtime در صورت وجود فایل Local از آن استفاده می‌کند و در غیر این صورت fallback امن دارد.
 
-Prototype اصلی فعلی در فاز UI با نام نسخه‌ای تا V32 توسعه داده شده است. این فایل قرارداد رفتاری محصول فعلی محسوب می‌شود تا زمانی که Frontend ماژولار جایگزین آن شود.
+## تست سریع
 
-HTML قدیمی حسابداری فقط Reference برای رفتار حسابداری است و نباید به‌عنوان Base محصول جدید استفاده شود.
+```bash
+php -l index.php
+php -l export.php
+php -l print.php
+php tests/phase3_formula_smoke.php
+```
 
-## اسناد پروژه
+در محیط نصب‌شده همچنین:
 
-برای ادامه توسعه ابتدا این فایل‌ها را بخوانید:
-- `AI_PROJECT_CONTEXT.md`
-- `docs/ARCHITECTURE.md`
-- `docs/BUSINESS_RULES.md`
-- `docs/DATABASE_PLAN.md`
-- `docs/ROADMAP.md`
+```bash
+php verify_release.php
+```
 
-## اصل توسعه
+## قواعد مهم توسعه
 
-تغییرات کوچک، قابل تست و قابل Rollback بر تغییرات عظیم ارجح‌اند. به‌خصوص در Accounting، ابتدا Business Semantics مشخص شود و بعد کد تغییر کند.
+- فرمول حسابداری فقط در Service مرکزی تغییر کند.
+- گزارش ذخیره‌شده باید Snapshot مالی خود را حفظ کند.
+- Raw customer XLS/XLSX، config واقعی، token، password، log و backup وارد Git نشود.
+- هر Release باید ZIP قابل Deploy، Changelog، دستور Upgrade و Source commit متناظر داشته باشد.
+- Acceptance یک فاز فقط بعد از تست واقعی روی cPanel ثبت می‌شود.
+
+## Release
+
+`v0.4.13` آخرین Runtime source موجود در Repository است. Release ZIP از همین Source tree ساخته می‌شود، با حذف Secretها، Runtime storage و Font binaries دارای مجوز.

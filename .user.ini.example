@@ -1,0 +1,3 @@
+; Optional cPanel PHP overrides. Do not commit host-specific absolute paths in .user.ini.
+log_errors = On
+; error_log = /absolute/path/outside/public_html/php.error.log
