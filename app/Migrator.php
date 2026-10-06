@@ -24,7 +24,9 @@ final class Migrator {
                 $st = $pdo->prepare('INSERT INTO migrations(version, applied_at) VALUES(?, NOW())');
                 $st->execute([$version]);
                 $done[] = $version;
+                Logger::system('migration.applied', ['version'=>$version]);
             } catch (Throwable $e) {
+                Logger::error('migration.failed', ['version'=>$version,'error'=>$e->getMessage()]);
                 throw $e;
             }
         }
@@ -33,11 +35,7 @@ final class Migrator {
 
     public static function latest(): string {
         try {
-            $pdo = Database::connection();
-            $v = $pdo->query('SELECT version FROM migrations ORDER BY applied_at DESC, version DESC LIMIT 1')->fetchColumn();
-            return $v ? ((string) $v) : 'none';
-        } catch (Throwable) {
-            return 'unavailable';
-        }
+            return (string)(Database::connection()->query('SELECT version FROM migrations ORDER BY applied_at DESC, version DESC LIMIT 1')->fetchColumn() ?: '-');
+        } catch (Throwable) { return '-'; }
     }
 }
