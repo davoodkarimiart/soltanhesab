@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.4.14
+- Finalized report Summary as an in-app modal; legacy `summary_report.php` routes back into the modal instead of acting as the primary UI.
+- Summary customer-name and amount cells now use configured Receive/Pay theme fills in modal, generated PNG, and print.
+- Excel export now applies semantic Receive/Pay/Commission colors to headers and data rows with SpreadsheetML border styling preserved.
+- Print/PDF uses the selected `font_print` from hosted local font assets and waits for `document.fonts.ready` before invoking print.
+- Browser asset cache keys bumped to `0414`.
+- No database migration.
+
 ## v0.4.13
 - Replaced the finalized-report Summary link/new-tab page with an in-app modal.
 - Added automatic Summary PNG generation, download, native share, WhatsApp, Telegram and in-page Print/PDF.
