@@ -1,5 +1,9 @@
 # AI_PROJECT_CONTEXT.md
 
+> **Operational update 2026-10-22:** This is a historical domain/architecture contract. Actual deployable source: [hesabsvo](https://github.com/davoodkarimiart/hesabsvo) at `v0.6.25`; this `soltanhesab` repo is the planning/reference repository and its older `VERSION` is not current runtime. The customer is currently validating the app on the test host. Do not claim Stable/new-host acceptance. Core UI/accounting/PWA and new Transfer feature exist in executable source; full Developer Ops (Phase 10), MCP (11) and final hardening/release (12) remain pending. See [PROJECT_STATUS.md](PROJECT_STATUS.md) and [docs/RELEASE_AND_DEBUG_HANDOFF.md](docs/RELEASE_AND_DEBUG_HANDOFF.md). Existing business rules below remain authoritative unless explicitly superseded in reviewed new source; transfer settlement uses raw member-win and a separately entered daily FX rate, **not customer-accounting rate**.
+
+
+
 این فایل قرارداد انتقال Context پروژه «سلطان حساب» بین ChatGPT/Codex/Developerها است. قبل از هر تغییر معماری یا حسابداری خوانده شود.
 
 ## 1. ماهیت پروژه
