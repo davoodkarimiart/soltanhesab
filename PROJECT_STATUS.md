@@ -1,49 +1,51 @@
 # Soltan Hesab — Current Project Status
 
-> **Current operational snapshot: 2026-10-22.** This repository is the **planning / historical reference**. Do not deploy its historical PHP code as the current product. The active full-source repository is [davoodkarimiart/hesabsvo](https://github.com/davoodkarimiart/hesabsvo), with `VERSION=0.6.25` verified on `main` on 2026-10-22. The `VERSION` file in this planning repository remains historical and intentionally is not relabeled.
+> **Operational snapshot: 2026-10-24.** This repository is for roadmap, decisions and historical documentation; do not deploy its historical PHP tree. Runtime on the test host was verified as **v0.6.53**, while the executable-source repository [davoodkarimiart/hesabsvo](https://github.com/davoodkarimiart/hesabsvo) has **not yet been verified as synced to v0.6.53**. A sanitized Phase 11 GitHub handoff package was prepared separately for Work. GitHub source sync is a Phase 12 handoff task, not something this documentation update alone accomplishes.
 
-## Current delivery stage: CUSTOMER_VALIDATION (not yet STABLE)
+## Current delivery stage: PHASE_11_ACCEPTED_SCOPED → PHASE_12_HARDENING
 
-- The live **test-host** product is being reviewed by the customer. The owner has allowed an additional short review period for feedback and accounting/reporting regression checks.
-- `v0.6.25` is the latest **source release observed in GitHub**, not proof that a fresh production installation or customer acceptance has passed. Do not mark it stable solely because it is committed.
-- Major delivered functionality in the source includes Companies/Panels/AccountSettings, daily accounting, grouping and customer ledger, analytical reports, XLSX/PDF/images, mobile-first UI, PWA shell, and the weekly/monthly/custom **Transfer** settlement module added after the original V32 scope. Transfer calculations, exceptional USD-balance approvals, receipt exports, and overlap checks require regression testing before a stable tag.
-- No unrelated feature development, MCP deployment or developer-panel redesign should interrupt final customer validation. Critical bug fixes can be made with a tested, logged patch.
+The owner explicitly narrowed Phase 11 MCP acceptance to: read/analyze accounting reports, diagnose site failures through health/error/system/audit logs, and create DB backups. This reduced scope supersedes the original proposal for complete MCP CRUD parity with every UI operation. The website retains its existing UI workflows; no claim is made that all web features are exposed via MCP.
 
-## Phase status, reconciled with the actual product
+Evidence from live test-host MCP:
+- OAuth connected with scoped Developer credentials; **28 MCP tools discoverable** on v0.6.52 and live v0.6.53 health verified.
+- Read-only company, customer, report, transfer and diagnostics calls succeeded; nonexistent records and unsupported transfer preview were rejected.
+- MCP database backup creation succeeded on **2026-10-24**: `soltan-db-20261024-150856-cba5a0a3.sql.gz` (74,464 bytes), confirmed by backup listing and `backup.created` system event.
+- Historical `backup.telegram_sent` log exists; **delivery of that new backup to Telegram was NOT verified** (tool request was blocked by the client security environment). Re-test end-to-end delivery during Phase 12. Existing cron script presence is not proof of successful scheduled runs.
+- Financial write tools, full permissions matrix, restore drill, accounting goldens and clean install have **not** received comprehensive Phase 12 acceptance. Site remains a **test host / not stable production release**.
 
-| Phase | Deliverable | State | What remains |
+## Phase status
+
+| Phase | Deliverable | State | Evidence / remaining release checks |
 |---|---|---|---|
-| 0 | V32 contract / anonymized fixtures | IN_PROGRESS | Historic feature matrix and financial golden fixtures remain incomplete/outdated |
-| 1 | Core / Installer / Security / basic logging | ACCEPTED (historical) | Repeat clean-install tests for v0.6.25 on the target hosting environment |
-| 2 | Companies / Panels / AccountSettings | ACCEPTED (historical) | Final customer regression |
-| 3 | Accounting engine / Daily Report_WL | ACCEPTED (historical) | Final decimal, exceptional-balance, save/edit regression |
-| 4 | Customer / Ledger / Grouping | READY_FOR_USER_TEST | Final customer sign-off |
-| 5 | Archive / Reports | READY_FOR_USER_TEST | Final report and filter sign-off |
-| 6 | Export / PDF / Print / Images | READY_FOR_USER_TEST | Excel 2010 / Android and image tests on target devices |
-| 7 | Settings / Theme / Fonts | READY_FOR_USER_TEST | Final display/font cross-device checks |
-| 8 | Dashboard / Mobile UX parity | READY_FOR_USER_TEST | Customer acceptance and final UI regression |
-| 9 | PWA | READY_FOR_USER_TEST | Install, cache update and offline-write safety test |
-| 10 | Developer Ops / Logs / Backup / Telegram | PLANNED | Basic logs and Developer-only Health exist; full viewer, scheduled backup, retention, Telegram and restore do not have acceptance evidence |
-| 11 | MCP | PLANNED | Service adapter, scoped tokens, permissions, audits and integration tests |
-| 12 | Hardening / Release | PLANNED | End-to-end clean install, upgrade, rollback, security, full financial regression and production handoff |
+| 0 | V32 contract / anonymized fixtures | IN_PROGRESS | Historical inventory exists; fixture/golden completeness still requires Phase 12 reconciliation |
+| 1 | Core / Installer / Security / basic logging | ACCEPTED | Historically accepted; fresh-install/security regression in Phase 12 |
+| 2 | Companies / Panels / AccountSettings | ACCEPTED | Historically accepted; final regression in Phase 12 |
+| 3 | Accounting engine / Daily Report_WL | ACCEPTED | Historically accepted; decimal/duplicate/finalization regression in Phase 12 |
+| 4 | Customer / Ledger / Grouping | READY_FOR_USER_TEST | Built; final acceptance/regression evidence incomplete |
+| 5 | Archive / Reports | READY_FOR_USER_TEST | Built; final filters/aggregation regression pending |
+| 6 | Export / PDF / Print / Images | READY_FOR_USER_TEST | Built; real Excel/PDF/mobile-device regression pending |
+| 7 | Settings / Theme / Fonts | READY_FOR_USER_TEST | Built; final cross-device review pending |
+| 8 | Dashboard / Mobile UX parity | READY_FOR_USER_TEST | Built; final responsive acceptance pending |
+| 9 | PWA | READY_FOR_USER_TEST | Built; install/cache/offline-write checks pending |
+| 10 | Developer Ops / Logs / Backup / Telegram | ACCEPTED | Owner accepted operational UI; backup & historical Telegram evidence; restore/cron/live delivery drill deferred to Phase 12 |
+| 11 | MCP (owner-approved diagnostic/report/backup scope) | ACCEPTED | OAuth, report-reading, logs/diagnostics, live DB backup passed; Telegram delivery for new backup unverified and carried to Phase 12 |
+| 12 | Hardening / Release | IN_PROGRESS | Next and final phase: clean install, upgrade/rollback, ACL/security, financial fixtures, exports, DB backup/restore, cron/Telegram delivery, source sync, stable release decision |
 
-**Do not infer acceptance** from a file existing or an installer page loading. Acceptance requires actual review/testing.
+**Interpretation:** ACCEPTED for Phases 10/11 means owner-approved *scoped functionality*, not passing Phase 12 production readiness. Do not silently promote historical READY_FOR_USER_TEST phases or claim full MCP/UI parity.
 
-## Next steps (in this order)
+## Next actions — Phase 12
 
-1. Gather the customer’s remaining issues on the test host; log concrete reproduction steps and protect accounting precision.
-2. Fix only confirmed regressions, re-test reports, transfers, Excel, receipts and mobile UI; freeze and tag a **Stable candidate** in `hesabsvo` only after customer acceptance.
-3. Run a complete fresh install from that tagged commit on a staging/new-host environment with a **new empty MySQL/MariaDB database**. Validate migrations, Admin/Developer login, accounting, XLSX/PDF/PNG exports, and installer lock. Existing production data need not be migrated if the owner wants a clean start.
-4. Validate backup and restore, operational safety, and production handoff before treating the new host as production.
-5. Continue the remaining Phase 10 Developer Operations/Logs/Backup/Telegram, Phase 11 MCP and Phase 12 release hardening in planned increments; do not falsely mark them finished.
+1. Reconcile live v0.6.53 sanitized source with `davoodkarimiart/hesabsvo` via Work, keeping secrets, customer data, backups and logs out of Git.
+2. Validate clean install, upgrade/migrations, rollback and restore on isolated staging with a disposable database.
+3. Run financial calculation and report aggregation goldens, exports, customer grouping, permissions and destructive-action controls.
+4. Validate cron scheduling, backup retention and Telegram delivery with a permitted end-to-end test; diagnose intermittent DB connection errors.
+5. Document accepted feature matrix, produce release candidate, then obtain owner approval for stable deployment.
 
 Quick links: [Master Implementation Plan](docs/MASTER_IMPLEMENTATION_PLAN.md), [Roadmap](docs/ROADMAP.md), [Release / Debug handoff](docs/RELEASE_AND_DEBUG_HANDOFF.md), [runtime-source policy](docs/RUNTIME_SOURCE.md).
 
 ---
 
-## Archived notes (historical; **not** the current phase decision)
-
-The following text is retained to preserve the historical decisions and fixes. Some phase states, version numbers and “next action” notes below are obsolete. **The snapshot above is authoritative for current planning.**
+## Archived notes (historical; **not** current status)
 
 # Soltan Hesab Project Status
 
