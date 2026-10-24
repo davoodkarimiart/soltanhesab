@@ -513,6 +513,14 @@ An MCP-created/read report produces the same accounting result as UI for the sam
 
 ---
 
+### Phase 11 scope and acceptance decision — 2026-10-24
+
+The owner explicitly accepted a **reduced practical MCP scope**: read financial reports and ledgers, inspect health/system/error/audit logs for issue diagnosis, and create database backups. The broader `write:reports`, complete CRUD parity and independent A/B experiment framework are **not Phase 11 exit criteria**; unimplemented tools must not be represented as delivered.
+
+Live site v0.6.53: OAuth, scoped diagnostic/read tools, and database backup creation passed. The new backup file was confirmed on disk and audit/system events recorded. A previous Telegram send event exists, but sending the **new** backup to Telegram could not be confirmed due to client-side blocking. This remains a Phase 12 validation item. Phase 11 marked ACCEPTED to the owner's reduced scope, not production stable.
+
+---
+
 ## Phase 12 — Hardening, migration and production release
 
 ### Tests
