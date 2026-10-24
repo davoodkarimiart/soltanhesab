@@ -1,6 +1,6 @@
 # Soltan Hesab — Current Project Status
 
-> **Operational snapshot: 2026-10-24.** This repository is for roadmap, decisions and historical documentation; do not deploy its historical PHP tree. Runtime on the test host was verified as **v0.6.53**, while the executable-source repository [davoodkarimiart/hesabsvo](https://github.com/davoodkarimiart/hesabsvo) has **not yet been verified as synced to v0.6.53**. A sanitized Phase 11 GitHub handoff package was prepared separately for Work. GitHub source sync is a Phase 12 handoff task, not something this documentation update alone accomplishes.
+> **Operational snapshot: 2026-10-24.** This repository is for roadmap, decisions and historical documentation; do not deploy its historical PHP tree. Runtime on the test host was verified as **v0.6.53**, while the executable-source repository [davoodkarimiart/hesabsvo](https://github.com/davoodkarimiart/hesabsvo) is now synced to `VERSION=0.6.53` on main by [PR #2](https://github.com/davoodkarimiart/hesabsvo/pull/2), merge commit `7dfb50d`. The GitHub Actions PHP/JS lint and accounting/auth smoke checks passed. This roadmap records status; executable code lives in hesabsvo.
 
 ## Current delivery stage: PHASE_11_ACCEPTED_SCOPED → PHASE_12_HARDENING
 
@@ -35,7 +35,7 @@ Evidence from live test-host MCP:
 
 ## Next actions — Phase 12
 
-1. Reconcile live v0.6.53 sanitized source with `davoodkarimiart/hesabsvo` via Work, keeping secrets, customer data, backups and logs out of Git.
+1. Keep `hesabsvo` at the sanitized v0.6.53 source; runtime secrets, customer data, backups and logs remain excluded.
 2. Validate clean install, upgrade/migrations, rollback and restore on isolated staging with a disposable database.
 3. Run financial calculation and report aggregation goldens, exports, customer grouping, permissions and destructive-action controls.
 4. Validate cron scheduling, backup retention and Telegram delivery with a permitted end-to-end test; diagnose intermittent DB connection errors.
