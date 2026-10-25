@@ -1,8 +1,8 @@
 # Soltan Hesab — Current Project Status
 
-> **Operational snapshot: 2026-10-24.** This repository is for roadmap, decisions and historical documentation; do not deploy its historical PHP tree. Runtime on the test host was verified as **v0.6.53**, while the executable-source repository [davoodkarimiart/hesabsvo](https://github.com/davoodkarimiart/hesabsvo) is now synced to `VERSION=0.6.53` on main by [PR #2](https://github.com/davoodkarimiart/hesabsvo/pull/2), merge commit `7dfb50d`. The GitHub Actions PHP/JS lint and accounting/auth smoke checks passed. This roadmap records status; executable code lives in hesabsvo.
+ > **Operational snapshot: 2026-10-25.** This repository is for roadmap, decisions and historical documentation; do not deploy its historical PHP tree. Runtime on the test host was verified as **v0.6.53**, while the executable-source repository [davoodkarimiart/hesabsvo](https://github.com/davoodkarimiart/hesabsvo) is now synced to `VERSION=0.6.53` on main by [PR #2](https://github.com/davoodkarimiart/hesabsvo/pull/2), merge commit `7dfb50d`. The GitHub Actions PHP/JS lint and accounting/auth smoke checks passed. This roadmap records status; executable code lives in hesabsvo.
 
-## Current delivery stage: PHASE_11_ACCEPTED_SCOPED → PHASE_12_HARDENING
+## Current delivery stage: PHASE_12_OPERATIONAL_ACCEPTED (customer clean-install release packaged)
 
 The owner explicitly narrowed Phase 11 MCP acceptance to: read/analyze accounting reports, diagnose site failures through health/error/system/audit logs, and create DB backups. This reduced scope supersedes the original proposal for complete MCP CRUD parity with every UI operation. The website retains its existing UI workflows; no claim is made that all web features are exposed via MCP.
 
@@ -296,3 +296,12 @@ Complete Phase 0 by creating sanitized golden fixtures and expected accounting o
 - Customer directory keeps Persian A→Y as default and live-search binding was hardened across input/keyup/search/change.
 - PWA cache bumped to v056.
 - No database migration.
+
+
+## Phase 12 customer handoff — 2026-10-25
+
+- Fresh install on `behagent.ir`, company/panel import, accounting reports and earlier backup restore tested by owner.
+- OAuth MCP authenticated; DB health, reporting and audit tools checked. Error log empty at last check.
+- Cron-created backup and Telegram delivery confirmed by matching event IDs and user receipt, then schedule reset daily 03:00 server time.
+- Final installation package `soltanhesab-v0.6.53-phase12-FINAL-customer-install.zip` SHA256 `e4e13cc2004f9c940ad6c88b3eecbc28951eaefe012eccfdcb25ff737ddc8045`, archive and 74 PHP lint pass, plus exact Git blob SHA parity on five release-critical source files. See executable repo `docs/PHASE12_RELEASE_FINAL.md`.
+- **Boundary:** operational customer handoff accepted; not represented as a comprehensive penetration test or proof every repository file is byte-identical to ZIP.
